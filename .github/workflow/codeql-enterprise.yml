@@ -1,0 +1,27 @@
+name: CodeQL Enterprise Gate
+
+on:
+  pull_request:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '7.0.x'
+
+    - uses: github/codeql-action/init@v3
+      with:
+        languages: csharp
+        queries: .github/codeql/custom-queries
+
+    - run: dotnet build --no-restore
+
+    - uses: github/codeql-action/analyze@v3
