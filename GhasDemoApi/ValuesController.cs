@@ -16,7 +16,7 @@ namespace GhasDemoApi
 
 
             // ❌ SQL Injection
-            var query = $"SELECT top 100 * FROM Users WHERE Username = '{username}'";
+            var query = $"SELECT top 1000 * FROM Users WHERE Username = '{username}'";
             var cmd = new SqlCommand(query, conn);
 
 
